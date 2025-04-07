@@ -54,7 +54,7 @@ void entryStudent(List* list)
 
 	printf("ÇëÊäÈëÊıÑ§->");
 	scanf("%f", &node->stu.math);
-
+	 
 	printf("ÇëÊäÈëÓ¢Óï->");
 	scanf("%f", &node->stu.english);
 

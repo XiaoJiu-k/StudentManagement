@@ -10,7 +10,7 @@ int main()
 	memset(&list, 0, sizeof(List));
 
 	while (true) 
-	{
+	{ 
 		StudentOpstions m;
 		switch (menu())
 		{

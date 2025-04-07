@@ -49,7 +49,7 @@ typedef struct List
  * 菜单.
  */
 int menu();
-
+ 
 /**
  * 录入学生信息.
  */
