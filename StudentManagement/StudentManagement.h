@@ -50,6 +50,11 @@ typedef struct List
  */
 int menu();
 
+/**
+ * 录入学生信息.
+ */
+void entryStudent(List* list);
+
 
 
 

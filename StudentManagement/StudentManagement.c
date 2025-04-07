@@ -1,6 +1,6 @@
 #include "StudentManagement.h"
 #include <stdio.h>
-
+#include <malloc.h>
 
 /**
  * 打印菜单.
@@ -27,3 +27,41 @@ int menu()
 
 	return select;
 }
+
+/**
+ * 录入学生信息.
+ * 
+ * \param list
+ */
+void entryStudent(List* list)
+{
+	//创建节点
+	Node* node = malloc(sizeof(Node));
+	if (!node) {
+		printf("malloc failed\n");
+		return;
+	}
+	node->next = NULL;
+
+	printf("请输入学号->");
+	scanf("%llu", &node->stu.number);
+	
+	printf("请输入姓名->");
+	scanf("%s", &node->stu.name);
+
+	printf("请输入语文->");
+	scanf("%f", &node->stu.chinese);
+
+	printf("请输入数学->");
+	scanf("%f", &node->stu.math);
+
+	printf("请输入英语->");
+	scanf("%f", &node->stu.english);
+
+	//插入连表
+	node->next = list->front;
+	list->front = node;
+	list->size++;
+}
+
+

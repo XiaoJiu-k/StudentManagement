@@ -17,6 +17,7 @@ int main()
 		case Quit:
 			break;
 		case Entry:
+			entryStudent(&list);
 			break;
 		case Print:
 			break;
