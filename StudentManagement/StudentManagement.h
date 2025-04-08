@@ -55,6 +55,17 @@ int menu();
  */
 void entryStudent(List* list);
 
+/**
+ * 打印学生信息.
+ */
+void printStudent(List* list);
+
+/**
+ * 保存学生信息.
+ */
+void saveStudent(List* list);
+void saveStudentHuman(List* list);
+
 
 
 

@@ -64,4 +64,71 @@ void entryStudent(List* list)
 	list->size++;
 }
 
+/**
+ * 打印学生信息.
+ * 
+ * \param list
+ */
+void printStudent(List* list)
+{	
+	printf("*****************\n");
+	printf("*学号\t姓名\t语文\t数学\t英语*\n");
+	printf("*****************\n");
+	Node* currNode = list->front;
+	while (currNode != NULL)
+	{
+
+		printf("%llu\t%s\t%.1f\t%.1f\t%.1f\t%.1f\n", currNode->stu.number, currNode->stu.name, currNode->stu.chinese, currNode->stu.math, currNode->stu.english);
+		currNode = currNode->next;
+
+	}
+}
+
+/**
+ * 保存学生信息(二进制).
+ * 
+ * \param list
+ */
+void saveStudent(List* list)
+{
+	//打开文件
+	FILE* fp = fopen("Student.data", "wb");
+	if (!fp) {
+		perror("file open failed");
+		return;
+	}
+	//保存
+	Node* currNode = list->front;
+	while (currNode != NULL) {
+		fwrite(&currNode->stu, sizeof(Student), 1, fp);
+		currNode = currNode->next;
+	}
+	//关闭
+	fclose(fp);
+
+}
+
+/**
+ * 保存学生信息(明文).
+ * 
+ * \param list
+ */
+void saveStudentHuman(List* list)
+{
+	//打开文件
+	FILE* fp = fopen("Student.txt", "w");
+	if (!fp) {
+		perror("file open failed");
+		return;
+	}
+	//保存
+	Node* currNode = list->front;
+	while (currNode != NULL) {
+		fprintf(fp,"%llu\t%s\t%.1f\t%.1f\t%.1f\n", currNode->stu.number, currNode->stu.name, currNode->stu.chinese, currNode->stu.math, currNode->stu.english);
+		currNode = currNode->next;
+	}
+	//关闭
+	fclose(fp);
+}
+
 

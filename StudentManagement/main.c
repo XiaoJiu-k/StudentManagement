@@ -8,6 +8,7 @@ int main()
 {
 	List list = { 0 };
 	memset(&list, 0, sizeof(List));
+	
 
 	while (true) 
 	{ 
@@ -20,8 +21,11 @@ int main()
 			entryStudent(&list);
 			break;
 		case Print:
+			printStudent(&list);
 			break;
 		case Save:
+			saveStudent(&list);
+			saveStudentHuman(&list);
 			break;
 		case Read:
 			break;
