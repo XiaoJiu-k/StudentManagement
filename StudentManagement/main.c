@@ -28,6 +28,7 @@ int main()
 			saveStudentHuman(&list);
 			break;
 		case Read:
+			readStudent(&list);
 			break;
 		case Statistics:
 			break;

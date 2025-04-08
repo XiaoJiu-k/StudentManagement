@@ -2,6 +2,17 @@
 #include <stdio.h>
 #include <malloc.h>
 
+static Node* CreateNode() {
+	//创建节点
+	Node* node = malloc(sizeof(Node));
+	if (!node) {
+		printf("malloc failed\n");
+		return NULL;
+	}
+	node->next = NULL;
+	return node;
+}
+
 /**
  * 打印菜单.
  *
@@ -35,13 +46,7 @@ int menu()
  */
 void entryStudent(List* list)
 {
-	//创建节点
-	Node* node = malloc(sizeof(Node));
-	if (!node) {
-		printf("malloc failed\n");
-		return;
-	}
-	node->next = NULL;
+	Node* node = CreateNode();
 
 	printf("请输入学号->");
 	scanf("%llu", &node->stu.number);
@@ -129,6 +134,47 @@ void saveStudentHuman(List* list)
 	}
 	//关闭
 	fclose(fp);
+}
+
+/**
+ * 读取学生信息(二进制).
+ * 
+ * \param list
+ */
+void readStudent(List* list)
+{	
+	//打开文件
+	FILE* fp = fopen("Student.data", "rb");
+	if (!fp) {
+		perror("file open failed");
+		return;
+	}
+	
+	while (!feof(fp))
+	{
+		Node* node = CreateNode();
+		if (!node)
+			break;
+		
+		fread(&node->stu, sizeof(Student), 1, fp);
+
+		//插入链表
+		node->next = list->front;
+		list->front = node;
+		list->size++;
+	}
+
+
+	//关闭
+	fclose(fp);
+}
+/**
+ * 读取学生信息(明文).
+ * 
+ * \param list
+ */
+void readStudentHuman(List* list)
+{
 }
 
 

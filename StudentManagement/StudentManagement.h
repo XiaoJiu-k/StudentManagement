@@ -66,6 +66,12 @@ void printStudent(List* list);
 void saveStudent(List* list);
 void saveStudentHuman(List* list);
 
+/**
+ * 读取学生信息.
+ */
+void readStudent(List* list);
+void readStudentHuman(List* list);
+
 
 
 
