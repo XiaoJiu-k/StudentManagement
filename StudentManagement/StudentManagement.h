@@ -72,6 +72,13 @@ void saveStudentHuman(List* list);
 void readStudent(List* list);
 void readStudentHuman(List* list);
 
+/**
+ * 统计学生人数.
+ */
+void statisticsStudent(List* list);
+
+Node* SelectStudent(List* list);
+
 
 
 

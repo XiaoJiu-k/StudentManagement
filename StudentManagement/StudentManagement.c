@@ -1,6 +1,7 @@
 #include "StudentManagement.h"
 #include <stdio.h>
 #include <malloc.h>
+#include <string.h>
 
 static Node* CreateNode() {
 	//创建节点
@@ -175,6 +176,72 @@ void readStudent(List* list)
  */
 void readStudentHuman(List* list)
 {
+	//打开文件
+	FILE* fp = fopen("Student.txt", "r");
+	if (!fp) {
+		perror("file open failed");
+		return;
+	}
+
+	while (!feof(fp)) {
+		Node* node = CreateNode();
+		if (!node)
+			break;
+		if (5 != fscanf(fp, "%llu\t%s\t%f\t%f\t%f", &node->stu.number, node->stu.name,
+			&node->stu.chinese, &node->stu.math, &node->stu.english))
+		{
+			free(node);
+			break;
+		}
+
+		node->next = list->front;
+		list->front = node;
+		list->size++;
+	}
+	//关闭
+	fclose(fp);
 }
+
+/**
+ * 统计人数.
+ */
+void statisticsStudent(List* list) {
+	Node* currNode = list->front;
+	int count = 0;
+	while (currNode != NULL) {
+		count++;
+		currNode = currNode->next;
+	}
+	printf("学生总人数S为：%d\t人\n",count);
+}
+/**
+ * 查找学生信息.
+ * 
+ * \param list
+ * \return 
+ */
+
+Node* SelectStudent(List* list)
+{
+	char buff[32];
+	printf("请输入学生学号或学生姓名:");
+	scanf("%s", buff);
+
+	unsigned long long number = -1;
+	sscanf(buff, "%llu", &number);
+
+	Node* currNode = list->front;
+	while (currNode != NULL) {
+		if (strcmp(currNode->stu.name, buff) == 0 || currNode->stu.number == number) {
+			return currNode;
+		}
+
+		currNode = currNode->next;
+	}
+
+	return NULL;
+}
+
+
 
 

@@ -28,11 +28,18 @@ int main()
 			saveStudentHuman(&list);
 			break;
 		case Read:
-			readStudent(&list);
+			//readStudent(&list);
+			readStudentHuman(&list);
 			break;
 		case Statistics:
+			statisticsStudent(&list);
 			break;
 		case Select:
+			Node* node = SelectStudent(&list);
+			if (!node)
+				printf("没有找到学生");
+			else
+				printf("%llu\t%s\t%.1f\t%.1f\t%.1f\n", node->stu.number, node->stu.name, node->stu.chinese, node->stu.math, node->stu.english);
 			break;
 		case Update:
 			break;
