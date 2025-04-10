@@ -77,7 +77,21 @@ void readStudentHuman(List* list);
  */
 void statisticsStudent(List* list);
 
+/**
+ * 查询学生信息.
+ */
 Node* SelectStudent(List* list);
+
+/**
+ * 修改学生信息.
+ */
+void UpdateStudent(List* list);
+
+/**
+ * 删除学生信息.
+ */
+void DeleteStudent(List* list);
+
 
 
 

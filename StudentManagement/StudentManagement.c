@@ -223,6 +223,11 @@ void statisticsStudent(List* list) {
 
 Node* SelectStudent(List* list)
 {
+	if (list->size == 0) {
+		printf("暂无数据！");
+		return NULL;
+	}
+		
 	char buff[32];
 	printf("请输入学生学号或学生姓名:");
 	scanf("%s", buff);
@@ -240,6 +245,82 @@ Node* SelectStudent(List* list)
 	}
 
 	return NULL;
+}
+
+/**
+ * 修改学生信息.
+ * 
+ * \param list
+ */
+void UpdateStudent(List* list)
+{
+	if (list->size == 0) {
+		printf("暂无数据！");
+		return;
+	}
+
+	char buff[32];
+	printf("请输入要修改的学生学号或学生姓名:");
+	scanf("%s", buff);
+
+	unsigned long long number = -1;
+	sscanf(buff, "%llu", &number);
+
+	Node* currNode = list->front;
+	while (currNode != NULL) {
+		if (strcmp(currNode->stu.name, buff) == 0 || currNode->stu.number == number) {
+			printf("请输入要修改学生的语文 数学 英语成绩->");
+			scanf("%f %f %f",&currNode->stu.chinese,&currNode->stu.math,&currNode->stu.english);
+			printf("修改成功!QAQ\n");
+			break;
+		}
+
+		currNode = currNode->next;
+	}
+
+	if (currNode == NULL)
+		printf("没有这个学生！");
+}
+
+/**
+ * 删除学生信息.
+ * 
+ * \param list
+ */
+void DeleteStudent(List* list)
+{
+	if (list->size == 0) {
+		printf("暂无数据！");
+		return;
+	}
+
+	char buff[32];
+	printf("请输入学生学号或学生姓名:");
+	scanf("%s", buff);
+
+	unsigned long long number = -1;
+	sscanf(buff, "%llu", &number);
+
+	Node* currNode = list->front;
+	Node* pervNode = NULL;
+
+	while (currNode != NULL) {
+		if (strcmp(currNode->stu.name, buff) == 0 || currNode->stu.number == number) {
+			break;
+		}
+		pervNode = currNode;
+		currNode = currNode->next;
+	}
+
+	if (currNode) {
+		if (pervNode == NULL)
+			list->front = currNode->next;
+		else
+			pervNode->next = currNode->next;
+		free(currNode);
+		list->size--;
+		printf("删除成功!\n");
+	}
 }
 
 
